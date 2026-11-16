@@ -1,0 +1,56 @@
+{
+  "accuracy": 99.64,
+  "precision": 99.88,
+  "recall": 99.64,
+  "f1_score": 99.76,
+  "roc_auc": 0.9999,
+  "confusion_matrix": [
+    [
+      532,
+      2
+    ],
+    [
+      6,
+      1654
+    ]
+  ],
+  "xgb_accuracy": 99.64,
+  "rf_accuracy": 99.68,
+  "mlp_accuracy": 99.64,
+  "train_samples": 8776,
+  "test_samples": 2194,
+  "feature_count": 30,
+  "dataset": "real-world download",
+  "feature_importances": {
+    "digit_ratio": 0.4133,
+    "count_digits": 0.3484,
+    "is_https": 0.0785,
+    "suspicious_kw_in_domain": 0.0268,
+    "has_hyphen_domain": 0.0177,
+    "has_ip": 0.0155,
+    "path_length": 0.0151,
+    "suspicious_kw_count": 0.0132,
+    "shannon_entropy_host": 0.0078,
+    "shannon_entropy_url": 0.0076,
+    "hostname_length": 0.007,
+    "subdomain_count": 0.0069,
+    "count_slash": 0.0062,
+    "count_dots": 0.0058,
+    "url_length": 0.0057,
+    "has_sensitive_ext": 0.0057,
+    "count_hyphens": 0.0056,
+    "suspicious_tld": 0.0054,
+    "path_depth": 0.004,
+    "query_length": 0.0016,
+    "count_equal": 0.0016,
+    "count_question": 0.0003,
+    "is_shortened": 0.0001,
+    "param_count": 0.0001,
+    "count_at": 0.0,
+    "count_percent": 0.0,
+    "has_port": 0.0,
+    "has_double_slash_path": 0.0,
+    "is_punycode": 0.0,
+    "hex_encoding_count": 0.0
+  }
+}
