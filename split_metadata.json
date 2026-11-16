@@ -1,0 +1,52 @@
+{
+  "total_samples": 2000,
+  "train_samples": 1576,
+  "test_samples": 424,
+  "actual_test_ratio": 0.212,
+  "total_unique_domains": 44,
+  "train_domains": 36,
+  "test_domains": 8,
+  "leaked_domains": 0,
+  "temporal_split": true,
+  "feature_count": 30,
+  "feature_names": [
+    "url_length",
+    "hostname_length",
+    "path_length",
+    "query_length",
+    "count_dots",
+    "count_hyphens",
+    "count_at",
+    "count_question",
+    "count_equal",
+    "count_percent",
+    "count_slash",
+    "count_digits",
+    "digit_ratio",
+    "subdomain_count",
+    "has_ip",
+    "is_shortened",
+    "has_hyphen_domain",
+    "suspicious_kw_count",
+    "suspicious_kw_in_domain",
+    "suspicious_tld",
+    "shannon_entropy_host",
+    "shannon_entropy_url",
+    "is_https",
+    "has_port",
+    "has_double_slash_path",
+    "is_punycode",
+    "path_depth",
+    "has_sensitive_ext",
+    "param_count",
+    "hex_encoding_count"
+  ],
+  "train_label_distribution": {
+    "benign": 1000,
+    "phishing": 576
+  },
+  "test_label_distribution": {
+    "benign": 0,
+    "phishing": 424
+  }
+}
