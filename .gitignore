@@ -24,7 +24,9 @@ Thumbs.db
 .vscode/
 
 # Logs, PDF exports & inspection junk
+logs/
 *.log
 *.pdf
 *.ndjson
+reports/*.json
 

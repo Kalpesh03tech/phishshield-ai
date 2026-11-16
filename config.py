@@ -71,7 +71,7 @@ class PhishShieldSettings(BaseSettings):
     # ------------------------------------------------------------------
     SERVER_HOST: str = '0.0.0.0'
     SERVER_PORT: int = 8000
-    DEBUG_MODE: bool = True
+    DEBUG_MODE: bool = False
 
     model_config = {
         'env_file': os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env'),
@@ -94,7 +94,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 
-for path in [MODELS_DIR, LOGS_DIR, DATA_DIR]:
+    for path in [MODELS_DIR, DATA_DIR]:
     os.makedirs(path, exist_ok=True)
 
 # ------------------------------------------------------------------

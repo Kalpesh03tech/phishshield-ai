@@ -1,6 +1,6 @@
 # 🛡️ PhishShield AI 2.0 — Real-Time Threat Intelligence Platform
 
-**PhishShield AI 2.0** is a cybersecurity platform designed for high-throughput, sub-150ms phishing detection and explainable threat intelligence. Powered by an asynchronous FastAPI backend, parallel socket forensic probes, a high-accuracy **XGBoost Classifier**, and Groq LLM-assisted threat explainability.
+**PhishShield AI 2.0** is a cybersecurity platform for phishing URL analysis. It combines an asynchronous FastAPI backend, DNS/TLS/HTTP inspection, lexical risk signals, optional XGBoost inference, and optional Groq assisted explanations. Actual scan time depends on the target server and network conditions.
 
 ---
 
@@ -58,7 +58,7 @@ flowchart TD
 ### 3. 🛡️ Security Boundary Hardening
 - **SSRF Guard (`middleware/ssrf_guard.py`)**: Blocks RFC 1918 private IPs, loopback, link-local (AWS/GCP metadata `169.254.169.254`), multicast, CGNAT, and private IPv6 ranges.
 
-### 4. 📊 Scientifically Valid ML Evaluation Suite (`ml/`)
+### 4. 📊 ML Evaluation Suite (`ml/`)
 - **Domain-Aware & Temporal Splitting (`ml/temporal_split.py`)**: Prevents domain leakage across train/test sets using eTLD+1 grouping.
 - **Comprehensive Metrics (`ml/metrics_suite.py`)**: Accuracy, Precision, Recall, F1, PR-AUC, ROC-AUC, and Enterprise SaaS-specific False Positive Rate (FPR).
 - **CLI Evaluation Runner (`ml/evaluate.py`)**: Automated test execution and JSON reporting.
@@ -75,7 +75,7 @@ flowchart TD
 | **Generative Threat AI** | Groq API (`llama-3.3-70b-versatile`) |
 | **Security Middleware** | SSRF Guard (RFC 1918 / Cloud Metadata Interceptor) |
 | **Frontend UI** | Glassmorphism CSS3, Vanilla ES6+, Chart.js |
-| **Testing Suite** | Pytest, Pytest-Asyncio (42/42 Automated Unit Tests) |
+| **Testing Suite** | Pytest, Pytest-Asyncio |
 
 ---
 
@@ -106,7 +106,7 @@ phishing/
 ├── templates/             # Dashboard UI (index.html)
 ├── tests/                 # Comprehensive test suite (42 tests)
 ├── utils/                 # Domain helpers, constants & input validators
-├── main.py                # Primary FastAPI application entry point
+├── main.py                # FastAPI application and launcher
 ├── config.py              # Pydantic-settings validated environment config
 └── requirements.txt       # Production dependencies
 ```
@@ -119,21 +119,26 @@ phishing/
 ```bash
 git clone https://github.com/Kalpesh03tech/phishshield-ai.git
 cd phishshield-ai
-pip install -r requirements.txt
+python3 -m venv .venv
+source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
+python -m pip install -r requirements.txt
+cp .env.example .env       # Optional: add a Groq key for live LLM explanations
 ```
 
 ### 2. Start the Server
 ```bash
-python3 main.py
+python main.py
 ```
 Then open **[http://127.0.0.1:8000](http://127.0.0.1:8000)** in your browser.
 
 ### 3. Run Test Suite
 ```bash
-python3 -m pytest tests/ -v
+python -m pytest tests/ -q
 ```
 
 ### 4. Run ML Evaluation
 ```bash
-python3 -m ml.evaluate --generate-sample --output reports/
+python -m ml.evaluate --generate-sample --output /tmp/phishshield-reports/
 ```
+
+Model artifacts in `models/` are optional for startup. If they are missing or fail to load, scans continue with the heuristic fallback. Add optional API keys to your local `.env`; never commit that file. QR image decoding currently runs in the browser when supported.

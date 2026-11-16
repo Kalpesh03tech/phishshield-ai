@@ -8,12 +8,13 @@ import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, HTMLResponse
+from pathlib import Path
 
-from config import settings, STATIC_DIR, TEMPLATES_DIR, SERVER_PORT
+from config import settings
 from middleware.ssrf_guard import SSRFGuard
 from api.async_routes import router as api_router
 from models.inference import model_manager
@@ -48,6 +49,9 @@ async def lifespan(app: FastAPI):
     logger.info("Async HTTP client closed. Goodbye.")
 
 
+# Resolve frontend assets relative to this file so startup is independent of cwd.
+BASE_DIR = Path(__file__).resolve().parent
+
 # Initialize FastAPI application
 app = FastAPI(
     title="PhishShield AI 2.0",
@@ -76,8 +80,8 @@ if settings.SSRF_BLOCK_PRIVATE:
 app.include_router(api_router)
 
 # ---- Static Files & Templates ----
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
+templates = Jinja2Templates(directory=BASE_DIR / "templates")
 
 # Support Flask-style url_for('static', filename='...') in Jinja2 templates
 def custom_url_for(name: str, **path_params) -> str:
@@ -112,7 +116,7 @@ async def global_exception_handler(request: Request, exc: Exception):
         status_code=500,
         content={
             'success': False,
-            'error': f'An internal server error occurred: {str(exc)}'
+            'error': 'An internal server error occurred.'
         }
     )
 
