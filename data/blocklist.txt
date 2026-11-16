@@ -1,0 +1,61 @@
+# PhishShield AI 2.0 - Known Phishing Domain Blocklist
+# Lines starting with '#' are comments. One domain pattern per line.
+# Used by Tier 1 Verdict Engine for immediate DANGER classification.
+
+# Common phishing infrastructure domains
+secure-login-verify.com
+account-update-alert.com
+paypal-secure-login.tk
+apple-id-verify.ml
+microsoft-account-verify.ga
+netflix-billing-update.cf
+amazon-order-verify.gq
+google-security-alert.xyz
+facebook-login-secure.top
+instagram-verify-account.work
+
+# Known credential harvesting domains
+login-banking-secure.site
+verify-your-account-now.online
+update-payment-info.tech
+confirm-identity-secure.club
+password-reset-verify.info
+
+# Cryptocurrency scam domains
+free-crypto-airdrop.xyz
+claim-your-tokens.top
+binance-giveaway.ml
+metamask-wallet-verify.tk
+coinbase-secure-login.ga
+
+# Package delivery phishing
+dhl-tracking-update.cf
+fedex-delivery-notice.gq
+usps-package-alert.xyz
+ups-shipment-verify.top
+
+# Financial phishing
+chase-secure-verify.work
+wellsfargo-alert.site
+bankofamerica-verify.online
+citibank-update.tech
+sbi-netbanking-verify.club
+
+# Tech support scam domains
+microsoft-support-alert.info
+apple-support-verify.xyz
+google-account-locked.top
+
+# Generic phishing patterns
+urgent-action-required.ml
+your-account-suspended.tk
+immediate-verification.ga
+security-notice-update.cf
+confirm-your-details.gq
+
+# Indian banking phishing
+hdfc-netbanking-secure.xyz
+icici-ibanking-verify.top
+paytm-kyc-update.work
+phonepe-payment-verify.site
+axis-bank-secure.online
